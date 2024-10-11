@@ -1,0 +1,62 @@
+
+<div id="users" class="flex flex-col overflow-x-auto my-12  border rounded-lg p-2">
+
+    <table>
+        <thead>
+            <tr class="text-left border-b-2">
+                <th class="border-l-2 pr-2 whitespace-nowrap">
+                     Name</th>
+                <th class="pl-8 border-l-2 pr-2 whitespace-nowrap">
+                    Last Name</th>
+                <th class="pl-8 border-l-2 pr-2 whitespace-nowrap">
+                    Email</th>
+                <th class="pl-8 border-l-2 pr-2 whitespace-nowrap">
+                    Role</th>
+                <th class="pl-8 border-l-2 pr-2 whitespace-nowrap">
+                    Last Updated at</th>
+                <th class="pl-8 border-l-2 pr-2 whitespace-nowrap">
+                    Block user</th>
+            </tr>
+        </thead>
+
+        <tbody>
+            % for user in users:
+                <tr class="">
+                    <td class="pr-2">{{user["user_first_name"]}}</td>
+                    <td class="pl-8 pr-2 border-l-2">{{user["user_last_name"]}}</td>
+                    <td class="pl-8 pr-2 border-l-2">{{user["user_email"]}}</td>
+                    <td class="pl-8 pr-2 border-l-2">{{user["user_role"]}}</td>
+                    <td class="pl-8 pr-2 border-l-2">{{user["user_updated_at"]}}</td>
+                    <td class="pl-8 pr-2 border-l-2">
+                        <form id="{{user['user_pk']}}">
+                            <input name="user_id" type="text" value="{{user['user_pk']}}" class="hidden">
+                            
+        
+                         
+                      
+                                % if user['user_blocked_at'] == 0:
+                                <button mix-data="[id='{{user['user_pk']}}']"  mix-post="/toogle_user_block">
+                                    Block
+                                </button>
+                                % else:
+                                <button mix-data="[id='{{user['user_pk']}}']" mix-post="/toogle_user_unblock"
+                                >
+                                    Unblock
+                                </button>
+                                % end
+        
+                       
+                        
+        
+                           
+                        
+                        </form>
+                    </td>
+                </tr>
+            % end
+        </tbody>
+
+    </table>
+
+  
+</div>

@@ -1,0 +1,45 @@
+%include("_header", user=user)
+
+<main class="flex flex-col md:flex-row">
+    <div class="w-full h-full">
+        <div class="md:fixed w-full  aspect-video md:w-[calc(50%-0.5rem)] md:h-[calc(100%-5rem)] p-2 md:p-0 bg-neutral-100">
+            <div id='map' class="w-full h-full"></div>
+           
+        </div>    
+    </div>
+    <div class="w-full pb-16 px-4">
+        
+
+
+        %include("__item_list", items=items, role=user['user_role'] if user else 'not-signed-in', is_logged=is_logged)
+    </div>
+
+</main>
+
+
+<script>
+  mapboxgl.accessToken = "{{mapbox_token}}"
+  let map = new mapboxgl.Map({
+    container: 'map',
+    style: 'mapbox://styles/mapbox/streets-v11',
+    center: [12.5683, 55.6761],
+    zoom: 12
+  });
+
+
+  let items = "{{items}}".replace(/&#039;/g, '"');
+  // console.log(items)
+
+
+
+  setTimeout(function () {
+    if (typeof mapPins === 'function') {
+      mapPins(items);
+    } else {
+      console.error('mapPins function is not defined');
+    }
+  }, 500);
+</script>
+
+
+%include("_footer")

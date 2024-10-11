@@ -1,0 +1,40 @@
+%import x
+
+<form id="frm_create_property" class="flex flex-col gap-2 w-full mx-4 md:w-1/2">
+
+
+       
+
+
+        <div>
+                <label for="item_name">Name of property</label>
+                <input name="item_name" id="item_name" class="w-full border" type="text" placeholder="name of  property" value="" 
+                mix-check="{{x.ITEM_NAME_REGEX}}" 
+
+                >
+        </div>
+
+        <div>
+            <label for="item_splash_images">Image</label>
+            <input name="item_splash_images" id="item_splash_images" class="w-full border" multiple type="file" placeholder="splash_image" accept=".png, .jpg, .jpeg, .webp" max="5" min="1">
+        </div>
+
+
+
+        <div>
+            <label for="item_price_per_night">Price per night</label>
+            <input name="item_price_per_night" id="item_price_per_night" class="w-full border" type="text" placeholder="Price per night" value="" >
+        </div>
+
+       
+      
+    <button class=""
+        mix-data="#frm_create_property"
+        mix-post="/create_property"
+        mix-default="Create property"
+        mix-await="Please wait ..."
+    >
+        Create Property
+    </button>
+    <div id="message"></div>
+</form>

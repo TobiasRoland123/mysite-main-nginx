@@ -1,0 +1,31 @@
+services:
+  python:
+    environment:
+      - PYTHONUNBUFFERED=1
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: mysite_container
+    volumes:
+      - ./:/app
+
+  arangodb:
+    image: arangodb:3.11.3
+    container_name: mysite_arango_3.11.3_container
+    # restart: always
+    # ports:
+    #   - 8529:8529
+    environment:
+      - ARANGO_NO_AUTH=0
+    volumes:
+      - ./arangodb:/var/lib/arangodb3
+
+  nginx:
+    image: nginx:latest
+    container_name: nginx_container
+    ports:
+      - 80:80
+    volumes:
+      - ./nginx-config/nginx.conf:/etc/nginx/nginx.conf
+    depends_on:
+      - python

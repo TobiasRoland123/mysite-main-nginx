@@ -1,0 +1,52 @@
+%import x
+
+<form id="frm_edit_user" autocomplete="off" class="flex flex-col gap-2 w-full  md:w-1/2">
+        <div>
+                <label for="user_email">Email</label>
+                <input name="user_email" id="user_email" class="w-full border" type="email" placeholder="email" value="{{user['user_email']}}" 
+                mix-check="{{x.EMAIL_REGEX}}">
+        </div>
+        <div>
+                 <label for="user_username">Username</label>
+                <input name="user_username" id="user_username" class="w-full border" type="text" placeholder="Username" value="{{user['user_username']}}" mix-check="{{x.USER_USERNAME_REGEX}}">
+        </div>
+
+        <div>
+                 <label for="user_first_name">First Name</label>
+                <input name="user_first_name" class="w-full border" type="text" placeholder="First name" value="{{user['user_first_name']}}" 
+                mix-check="{{x.USER_USERNAME_REGEX}}">
+        </div>
+
+        <div>
+                <label for="user_last_name">Last Name</label>
+                <input name="user_last_name" id="user_last_name" class="w-full border" type="text" placeholder="Lastname" value="{{user['user_last_name']}}" mix-check="{{x.USER_USERNAME_REGEX}}">
+        </div>
+      
+    <button 
+        mix-data="#frm_edit_user"
+        mix-put="/edit-user"
+        mix-default="Sava changes"
+        mix-await="Please wait ..."
+    >
+        Save changes
+    </button>
+    <div id="message"></div>
+
+<!-- 
+    <button 
+        class="bg-red-800"
+        mix-get="/delete-user"
+        mix-default="Delete Your Account"
+        mix-await="Please wait ..."
+>
+    Delete Your Account
+</button> -->
+
+
+</form>
+
+<div class="flex gap-4">
+    
+    <a href="/delete-user" class="text-red-600 underline" >Delete Your Account</a>
+    <a class="text-blue-600 underline" href="/forgot-password">Click here to reset password</a>
+</div>
