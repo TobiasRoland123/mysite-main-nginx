@@ -1,5 +1,5 @@
 #########################
-from bottle import default_app, get, post, response, run, static_file, template, request,delete, put, redirect
+from bottle import default_app, get, post, response, run, static_file, template, request ,delete, put, redirect
 import git
 import x
 import bcrypt
@@ -1296,12 +1296,21 @@ def _():
 @post("/arangodb/user")
 def _():
     try:
+       
         
         
-        # Validate and extract user fields from the JSON data
-        user_id =  int(request.forms.get("user_pk", ""))
-        user_name = x.validate_user_first_name()
-        user_email = x.validate_user_email()
+
+
+        # user_id = int(request.json.get("user_id", ""))
+        # user_name = x.validate_user_first_name()
+        # user_email = x.validate_user_email()
+
+        user_data = request.json
+
+
+        user_id = user_data.get("user_id")
+        user_name = user_data.get("user_name")
+        user_email = user_data.get("user_email")
 
         # Construct user document
         user = {
